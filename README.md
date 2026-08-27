@@ -109,4 +109,4 @@ Next, in order: measurements on real changes ([docs/measurement.md](docs/measure
 optional code-graph support, more regulatory profiles, and `/specsmith:drift` — comparing
 a spec against what the code actually does now, using `trace.json`.
 
-MIT.
+MIT — see [LICENSE](LICENSE).
