@@ -1,12 +1,14 @@
-# SpecSmith
+# SpecSmith — spec-driven development for existing codebases
 
-Spec-driven development for codebases that already exist.
+**A Claude Code plugin for brownfield work.** It reads your repository's actual
+conventions, interviews you about a change, and writes a specification, a technical
+design, and an ordered task list to disk — before the AI agent writes any code.
 
-Most SDD tooling assumes a greenfield project: describe what you want, get a spec,
-generate code. Real work is rarely that. You have sixty services, consumers you did not
-write, and a change that has to ship without breaking any of them. SpecSmith specifies
-**a change to a running system** — what it touches, who depends on it, what breaks, and
-how you get back.
+Most spec-driven development (SDD) tooling assumes a greenfield project: describe what
+you want, get a spec, generate code. Real work is rarely that. You have sixty services,
+consumers you did not write, and a change that has to ship without breaking any of them.
+SpecSmith specifies **a change to a running system** — what it touches, who depends on
+it, what breaks, and how you get back.
 
 The premise is small: a spec takes five minutes to fix. Code the agent has already
 written does not.
@@ -100,6 +102,60 @@ trust with it. SpecSmith writes down what the code cannot tell you:
 - **Contract impact** — who breaks, and how they migrate
 - **Acceptance criteria** — observable facts, verifiable by someone who did not build it
 - **Rejected alternatives** — so the debate does not restart in three months
+
+## How it compares
+
+Spec-driven development tools have converged on a similar shape — requirements, then
+design, then tasks. The differences are in what they assume about your codebase.
+
+| | Greenfield assumed | Reads your conventions | Blast radius | Regulatory profiles |
+| --- | --- | --- | --- | --- |
+| GitHub Spec Kit | yes | no | no | no |
+| Kiro spec mode | partly | no | no | no |
+| SpecSmith | no | yes | yes, with provenance | yes, opt-in |
+
+If you are starting a new project, use one of the others — SpecSmith's entire first phase
+is reading code that does not exist yet. It earns its place when the code is already
+there, has consumers, and cannot break.
+
+## FAQ
+
+**Does this write code?** No. It stops at `tasks.md` and hands the decision back to you.
+Implementation is a separate step you take with the agent of your choice.
+
+**Does it work without a code graph?** Yes. Blast radius degrades to text search and says
+so in the design. The plugin never requires a graph and never fails because one is absent.
+
+**Is it Python-only?** No. The reading layer is language-agnostic; the caveats about
+dynamic dispatch are written with Python in mind because that is where they bite hardest.
+
+**Does the 152-ФЗ profile make my project compliant?** No, and it is built specifically
+not to claim that. It routes a spec to the rules it touches so a human reviews it. See
+[the profile](policies/ru/152-fz-pdn.md).
+
+**Does it send my code anywhere?** No. It is Markdown instructions for an agent you are
+already running. There is no service, no telemetry, and no network call of its own.
+
+## Русское описание
+
+**SpecSmith — плагин для Claude Code, который заставляет агента сначала договориться,
+а потом писать код.** Рассчитан на brownfield: не на новый проект с нуля, а на изменение
+в системе, у которой уже есть работающее поведение, контракты и потребители.
+
+Отличий от Spec Kit, Kiro и Tessl три:
+
+- **Конвенции выводятся из вашего кода**, а не задаются с нуля — как здесь на самом деле
+  обрабатываются ошибки, как логируют, где лежат слои, включая места, где кодовая база
+  противоречит сама себе
+- **Радиус поражения** — кто вызывает, что импортирует, кто потребляет контракт — с явной
+  пометкой, откуда получен ответ: граф кода или текстовый поиск
+- **Профили нормативов РФ** — [152-ФЗ о персональных данных](policies/ru/152-fz-pdn.md),
+  семь правил в формате «триггер → требование → что должно быть в спеке». Подключается
+  явно, по умолчанию ничего не включено
+
+Инструмент **маршрутизирует, а не выносит вердикт**: на выходе «это изменение затрагивает
+PDN-03, покажите ИБ», и никогда «соответствует 152-ФЗ». Ложное чувство защищённости
+опаснее отсутствия проверки — оно останавливает того, кто иначе пошёл бы проверять.
 
 ## Status
 

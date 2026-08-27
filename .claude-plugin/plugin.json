@@ -1,7 +1,7 @@
 {
   "name": "specsmith",
   "version": "0.1.0",
-  "description": "Spec-driven development for existing codebases. Infers your conventions from the code, interviews you about a change, writes spec/design/tasks to disk, and routes each spec to the organizational policies it touches.",
+  "description": "Spec-driven development for existing codebases. Reads your repo's conventions, interviews you about a change, and writes spec, design and tasks to disk — with blast-radius analysis and opt-in regulatory policy routing (152-ФЗ).",
   "author": {
     "name": "Yury Kononov",
     "url": "https://ykononov.com"
@@ -13,9 +13,19 @@
     "spec-driven-development",
     "sdd",
     "brownfield",
+    "legacy-code",
     "requirements",
+    "specification",
+    "software-design",
+    "technical-design",
+    "planning",
     "engineering-standards",
+    "conventions",
+    "blast-radius",
+    "impact-analysis",
     "compliance",
-    "planning"
+    "data-protection",
+    "personal-data",
+    "152-fz"
   ]
 }
