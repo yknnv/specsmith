@@ -158,6 +158,11 @@ already running. There is no service, no telemetry, and no network call of its o
 PDN-03, покажите ИБ», и никогда «соответствует 152-ФЗ». Ложное чувство защищённости
 опаснее отсутствия проверки — оно останавливает того, кто иначе пошёл бы проверять.
 
+Автор — Юрий Кононов: [ykononov.com](https://ykononov.com),
+[LinkedIn](https://www.linkedin.com/in/ykononov/), телеграм [@ykononov](https://t.me/ykononov).
+Если правило профиля 152-ФЗ сформулировано неточно или его не хватает — заводите
+[issue](https://github.com/yknnv/specsmith/issues), профили от этого только выигрывают.
+
 ## Status
 
 v0.1 — `init` through `tasks`, with the 152-ФЗ profile and text-search blast radius.
@@ -165,5 +170,16 @@ v0.1 — `init` through `tasks`, with the 152-ФЗ profile and text-search blast
 Next, in order: measurements on real changes ([docs/measurement.md](docs/measurement.md)),
 optional code-graph support, more regulatory profiles, and `/specsmith:drift` — comparing
 a spec against what the code actually does now, using `trace.json`.
+
+## Author
+
+Yury Kononov — [ykononov.com](https://ykononov.com) ·
+[LinkedIn](https://www.linkedin.com/in/ykononov/) · Telegram [@ykononov](https://t.me/ykononov)
+
+Questions about a phase that behaved oddly in your repository, or a rule that should be
+in a policy profile, are best filed as an
+[issue](https://github.com/yknnv/specsmith/issues) — that is how the profiles get better.
+
+## License
 
 MIT — see [LICENSE](LICENSE).
