@@ -1,7 +1,5 @@
 {
-  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "specsmith",
-  "displayName": "SpecSmith",
   "version": "0.1.0",
   "description": "Spec-driven development for existing codebases. Infers your conventions from the code, interviews you about a change, writes spec/design/tasks to disk, and routes each spec to the organizational policies it touches.",
   "author": {
