@@ -1,39 +1,33 @@
 # SpecSmith — spec-driven development for existing codebases
 
-**A Claude Code plugin for brownfield work.** It reads your repository's actual
-conventions, interviews you about a change, and writes a specification, a technical
-design, and an ordered task list to disk — before the AI agent writes any code.
+**A Claude Code plugin.** You already write specs. Your tooling assumes the code does not
+exist yet.
 
-Most spec-driven development (SDD) tooling assumes a greenfield project: describe what
-you want, get a spec, generate code. Real work is rarely that. You have sixty services,
-consumers you did not write, and a change that has to ship without breaking any of them.
-SpecSmith specifies **a change to a running system** — what it touches, who depends on
-it, what breaks, and how you get back.
+Spec-driven development has converged on three artifacts — requirements, design, tasks —
+and it converged on them for good reasons. What the tooling assumes is a blank
+repository: describe what you want, get a spec, generate code. Then you open the actual
+repository, and there are sixty services, consumers you did not write, and a change that
+has to ship without breaking any of them.
+
+SpecSmith specifies **a change to a running system.** The same three artifacts. What
+happens around them is different: conventions are read out of your code instead of
+declared, the design carries the blast radius of the change, and your organization's
+rules live in a file the tool is forbidden to overwrite.
 
 The premise is small: a spec takes five minutes to fix. Code the agent has already
 written does not.
 
-## Three things that make it different
+## How it compares
 
-**Brownfield first.** Conventions are read out of your code, not imposed on it.
-`/specsmith:init` samples the modules closest to your work and writes down how errors are
-actually handled here, how logging is actually done, where the layers actually sit —
-including where the codebase contradicts itself. The interview then asks only what the
-repository cannot answer. Six questions, not a forty-field form.
+| | Greenfield assumed | Reads your conventions | Blast radius | Regulatory profiles |
+| --- | --- | --- | --- | --- |
+| GitHub Spec Kit | yes | no | no | no |
+| Kiro spec mode | partly | no | no | no |
+| SpecSmith | no | yes | yes, with provenance | yes, opt-in |
 
-**Conventions and policies are separate files.** `conventions.md` is generated and
-overwritten freely. `policies.md` is written by people — security, architecture — and
-**never touched by the tool.** Mixing them means one regeneration silently deletes a
-security control and leaves a plausible-looking document behind.
-
-**Regulatory profiles.** `policies/ru/152-fz-pdn.md` ships with the plugin: seven rules
-on personal data under Russian law, each as a trigger the spec phase can match, a
-requirement, and the facts a spec must therefore state. Opt-in, nothing enabled by
-default. Only public regulations ship here.
-
-SpecSmith **routes, it does not certify.** The output is "this change touches PDN-03,
-show it to security" — never "complies with 152-ФЗ". A false sense of coverage is worse
-than no check at all, because it stops someone from looking.
+If you are starting a new project, use one of the others — SpecSmith's entire first phase
+is reading code that does not exist yet. It earns its place when the code is already
+there, has consumers, and cannot break.
 
 ## Install
 
@@ -57,6 +51,28 @@ commit it. That file is the part a tool cannot write for you.
 Each phase writes to disk after every answer, so an interview survives an interrupted
 session. Run `/specsmith:spec` again on the same change and it resumes from the first
 unanswered question.
+
+## What the extra phases buy you
+
+**Conventions are inferred, so the interview gets shorter.** `/specsmith:init` samples the
+modules closest to your work and writes down how errors are actually handled here, how
+logging is actually done, where the layers actually sit — including where the codebase
+contradicts itself. The interview then asks only what the repository cannot answer. Six
+questions, not a forty-field form.
+
+**Conventions and policies are separate files.** `conventions.md` is generated and
+overwritten freely. `policies.md` is written by people — security, architecture — and
+**never touched by the tool.** Mixing them means one regeneration silently deletes a
+security control and leaves a plausible-looking document behind.
+
+**Regulatory profiles.** `policies/ru/152-fz-pdn.md` ships with the plugin: seven rules
+on personal data under Russian law, each as a trigger the spec phase can match, a
+requirement, and the facts a spec must therefore state. Opt-in, nothing enabled by
+default. Only public regulations ship here.
+
+SpecSmith **routes, it does not certify.** The output is "this change touches PDN-03,
+show it to security" — never "complies with 152-ФЗ". A false sense of coverage is worse
+than no check at all, because it stops someone from looking.
 
 ## Blast radius, and how much to trust it
 
@@ -102,21 +118,6 @@ trust with it. SpecSmith writes down what the code cannot tell you:
 - **Contract impact** — who breaks, and how they migrate
 - **Acceptance criteria** — observable facts, verifiable by someone who did not build it
 - **Rejected alternatives** — so the debate does not restart in three months
-
-## How it compares
-
-Spec-driven development tools have converged on a similar shape — requirements, then
-design, then tasks. The differences are in what they assume about your codebase.
-
-| | Greenfield assumed | Reads your conventions | Blast radius | Regulatory profiles |
-| --- | --- | --- | --- | --- |
-| GitHub Spec Kit | yes | no | no | no |
-| Kiro spec mode | partly | no | no | no |
-| SpecSmith | no | yes | yes, with provenance | yes, opt-in |
-
-If you are starting a new project, use one of the others — SpecSmith's entire first phase
-is reading code that does not exist yet. It earns its place when the code is already
-there, has consumers, and cannot break.
 
 ## FAQ
 
