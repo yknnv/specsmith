@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="100%" stop-color="#161B22"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1280" height="6" fill="#F0883E"/>
+
+  <!-- blast radius motif: one changed node, its dependents -->
+  <g opacity="0.5" stroke="#30363D" stroke-width="2" fill="none">
+    <path d="M1005 320 L1160 190"/><path d="M1005 320 L1185 285"/>
+    <path d="M1005 320 L1180 375"/><path d="M1005 320 L1130 455"/>
+    <path d="M1005 320 L1010 480"/><path d="M1005 320 L880 455"/>
+    <path d="M1005 320 L845 250"/>
+  </g>
+  <g fill="#30363D">
+    <circle cx="1160" cy="190" r="11"/><circle cx="1185" cy="285" r="11"/>
+    <circle cx="1180" cy="375" r="11"/><circle cx="1130" cy="455" r="11"/>
+    <circle cx="1010" cy="480" r="11"/><circle cx="880" cy="455" r="11"/>
+    <circle cx="845" cy="250" r="11"/>
+  </g>
+  <circle cx="1005" cy="320" r="26" fill="#0D1117" stroke="#F0883E" stroke-width="4"/>
+
+  <g font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+    <text x="90" y="196" font-size="23" font-weight="600" letter-spacing="4.5"
+          fill="#F0883E">CLAUDE CODE PLUGIN</text>
+
+    <text x="90" y="322" font-size="118" font-weight="700" fill="#F0F6FC"
+          letter-spacing="-2">SpecSmith</text>
+
+    <text x="90" y="394" font-size="43" fill="#C9D1D9">Spec-driven development for</text>
+    <text x="90" y="446" font-size="43" fill="#C9D1D9">codebases that already exist</text>
+
+    <text x="90" y="524" font-size="25" fill="#8B949E">Conventions from your code<tspan
+      fill="#484F58" dx="14">·</tspan><tspan fill="#8B949E" dx="14">Blast radius</tspan><tspan
+      fill="#484F58" dx="14">·</tspan><tspan fill="#8B949E" dx="14">152-ФЗ</tspan></text>
+  </g>
+
+  <text x="90" y="586" font-family="Menlo, monospace" font-size="22"
+        fill="#6E7681">github.com/yknnv/specsmith</text>
+</svg>
