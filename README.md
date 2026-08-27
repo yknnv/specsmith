@@ -17,6 +17,9 @@ rules live in a file the tool is forbidden to overwrite.
 The premise is small: a spec takes five minutes to fix. Code the agent has already
 written does not.
 
+**Regulatory profiles are optional.** Everything above works with none enabled — the
+152-ФЗ profile is there for teams that need it, and invisible to everyone else.
+
 ## How it compares
 
 | | Greenfield assumed | Reads your conventions | Blast radius | Regulatory profiles |
@@ -65,10 +68,14 @@ overwritten freely. `policies.md` is written by people — security, architectur
 **never touched by the tool.** Mixing them means one regeneration silently deletes a
 security control and leaves a plausible-looking document behind.
 
-**Regulatory profiles.** `policies/ru/152-fz-pdn.md` ships with the plugin: seven rules
-on personal data under Russian law, each as a trigger the spec phase can match, a
-requirement, and the facts a spec must therefore state. Opt-in, nothing enabled by
-default. Only public regulations ship here.
+**Regulatory profiles — optional.** `policies/ru/152-fz-pdn.md` ships with the plugin:
+seven rules on personal data under Russian law, each as a trigger the spec phase can
+match, a requirement, and the facts a spec must therefore state.
+
+**Nothing is enabled by default.** A profile applies only once you list it under
+`profiles:` in your own `policies.md`. If you never do, SpecSmith behaves as though the
+profile did not exist — no prompts about it, no sections in the spec, no mention in the
+output. Only public regulations ship here.
 
 SpecSmith **routes, it does not certify.** The output is "this change touches PDN-03,
 show it to security" — never "complies with 152-ФЗ". A false sense of coverage is worse
@@ -130,6 +137,10 @@ so in the design. The plugin never requires a graph and never fails because one 
 **Is it Python-only?** No. The reading layer is language-agnostic; the caveats about
 dynamic dispatch are written with Python in mind because that is where they bite hardest.
 
+**Do I have to use the 152-ФЗ profile?** No. It is opt-in and off until you enable it, and
+the rest of the plugin does not depend on it. Profiles for European regulation are next
+on the list — see Status.
+
 **Does the 152-ФЗ profile make my project compliant?** No, and it is built specifically
 not to claim that. It routes a spec to the rules it touches so a human reviews it. See
 [the profile](policies/ru/152-fz-pdn.md).
@@ -150,9 +161,10 @@ already running. There is no service, no telemetry, and no network call of its o
   противоречит сама себе
 - **Радиус поражения** — кто вызывает, что импортирует, кто потребляет контракт — с явной
   пометкой, откуда получен ответ: граф кода или текстовый поиск
-- **Профили нормативов РФ** — [152-ФЗ о персональных данных](policies/ru/152-fz-pdn.md),
+- **Профили нормативов — опционально.** [152-ФЗ о персональных данных](policies/ru/152-fz-pdn.md),
   семь правил в формате «триггер → требование → что должно быть в спеке». Подключается
-  явно, по умолчанию ничего не включено
+  явно, по умолчанию не включено ничего: не впишете профиль в свой `policies.md` — плагин
+  ведёт себя так, будто его нет
 
 Инструмент **маршрутизирует, а не выносит вердикт**: на выходе «это изменение затрагивает
 PDN-03, покажите ИБ», и никогда «соответствует 152-ФЗ». Ложное чувство защищённости
@@ -168,8 +180,9 @@ PDN-03, покажите ИБ», и никогда «соответствует 
 v0.1 — `init` through `tasks`, with the 152-ФЗ profile and text-search blast radius.
 
 Next, in order: measurements on real changes ([docs/measurement.md](docs/measurement.md)),
-optional code-graph support, more regulatory profiles, and `/specsmith:drift` — comparing
-a spec against what the code actually does now, using `trace.json`.
+optional code-graph support, then more regulatory profiles — **European regulation (GDPR)
+is the next profile after the Russian set** — and finally `/specsmith:drift`, comparing a
+spec against what the code actually does now, using `trace.json`.
 
 ## Author
 
