@@ -1,0 +1,53 @@
+# Policies
+
+**Written by people. `/specsmith:init` never overwrites this file.**
+
+Conventions describe how this codebase is written. Policies describe what the
+organization requires of it — security, data handling, operations. They are not
+inferred from the code, because the code is exactly what may be violating them.
+
+Owners: <who reviews changes to this file — security, architecture>
+Last reviewed: <date>
+
+---
+
+## Enabled profiles
+
+Regulatory profiles shipped with SpecSmith. Nothing is enabled by default. Enable a
+profile by listing it here; its rules are then applied to every spec in this repository.
+
+```yaml
+profiles:
+  # - ru/152-fz-pdn        # personal data (152-ФЗ)
+```
+
+Available: see `policies/` in the SpecSmith repository. Only public regulations ship
+with the plugin.
+
+---
+
+## Local rules
+
+Rules specific to this organization. Same triad as a profile rule — a trigger the spec
+phase can match, a requirement, and what the spec must therefore contain. A rule without
+a trigger never fires; a rule without "what must be in the spec" produces nothing an
+author can act on.
+
+### LOCAL-01 · <title>
+
+**Trigger:** <what in a spec makes this rule apply>
+
+**Requirement:** <what must hold>
+
+**Must appear in the spec:** <the specific facts the spec has to state>
+
+**Owner:** <team> · **Reviewed:** <date>
+
+---
+
+## How these are applied
+
+SpecSmith matches triggers against a finished spec and lists the policies it touches. It
+**routes to a reviewer — it does not certify compliance.** A spec that names every
+policy it touches has not been approved by anyone; it is ready to be shown to the people
+who approve things.

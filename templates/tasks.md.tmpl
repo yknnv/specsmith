@@ -1,0 +1,42 @@
+# Tasks: <change name>
+
+**Spec:** `./spec.md` · **Design:** `./design.md`
+**Last updated:** <date>
+
+## Sequence
+
+Phases keep the system deployable at every step.
+
+### Phase 1 — Expand (additive, breaks nothing)
+
+- [ ] **T1** — <verb-first title>
+  - Touches: `path/to/module`
+  - Advances: A1
+  - Verified by: <test / check / observable outcome>
+  - Blocked by: —
+
+### Phase 2 — Implement (behind flag)
+
+- [ ] **T2** — …
+
+### Phase 3 — Migrate (consumers and data)
+
+- [ ] **T3** — …
+
+### Phase 4 — Contract (remove dead paths)
+
+- [ ] **T4** — …
+
+## Parallelism
+
+Tasks that can run concurrently: T2 ∥ T3
+Tasks that must ship in one release: T5 + T6 — <why>
+
+## Coverage
+
+Every acceptance criterion from the spec, and the tasks that deliver it. Gaps listed
+explicitly rather than omitted.
+
+| Criterion | Tasks | Covered |
+| --- | --- | --- |
+| A1 | T1, T2 | yes |

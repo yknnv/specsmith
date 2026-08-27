@@ -1,0 +1,76 @@
+# Design: <change name>
+
+**Spec:** `./spec.md`
+**Status:** draft | approved
+**Last updated:** <date>
+
+## Blast radius
+
+**Dependency source:** graph | text-search
+<If text-search: may be incomplete — misses import aliases, re-exports, dynamic dispatch.>
+<If the change touches getattr, decorators, registries, or runtime attribute assignment,
+say so here: neither source sees them.>
+
+| Point of change | Callers | Contract consumers | Data | Covering tests |
+| --- | --- | --- | --- | --- |
+| | | | | |
+
+## Approach
+
+The chosen approach in a paragraph, then a diagram if the shape is not obvious from
+prose. Enough for a reviewer to disagree with you.
+
+## Contract changes
+
+Every externally visible interface that changes.
+
+| Contract | Change | Additive / Breaking | Consumer migration |
+| --- | --- | --- | --- |
+| | | | |
+
+For each breaking change, the migration path in detail: who calls it, how they are
+notified, what the deprecation window is.
+
+## Failure handling
+
+| Dependency | Timeout | Retry | Fallback | Caller sees |
+| --- | --- | --- | --- | --- |
+| | | | | |
+
+Concrete numbers. "Retries with backoff" is not a design.
+
+## Data
+
+Schema changes, and the migration sequence. Expand → backfill → contract, with the
+deployable state at each step. Backfill volume and expected duration if it is non-trivial.
+
+## Observability
+
+- **Logs:** what is logged, at what level, with what correlation ID
+- **Metrics:** names, labels, what each answers
+- **Alerts:** what fires, on what threshold, and what the responder does
+
+## Rollout and rollback
+
+Flags, ordering, canary plan. Then: how to revert after each step, and the point past
+which revert is no longer clean.
+
+## Rejected alternatives
+
+| Alternative | Why not |
+| --- | --- |
+| | |
+
+## Policies carried forward
+
+Each policy the spec touched, and where this design answers it — or that it is still open.
+
+| Rule | Answered by | Still open |
+| --- | --- | --- |
+| | | |
+
+**Not a compliance assessment.** Requires review by whoever owns security.
+
+## Convention deviations
+
+Departures from `.specsmith/conventions.md` with justification.

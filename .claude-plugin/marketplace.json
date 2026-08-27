@@ -1,0 +1,14 @@
+{
+  "name": "specsmith",
+  "owner": {
+    "name": "Yury Kononov",
+    "url": "https://ykononov.com"
+  },
+  "plugins": [
+    {
+      "name": "specsmith",
+      "source": "./",
+      "description": "Spec-driven development for existing codebases. Infers your conventions from the code, interviews you about a change, writes spec/design/tasks to disk, and routes each spec to the organizational policies it touches."
+    }
+  ]
+}
