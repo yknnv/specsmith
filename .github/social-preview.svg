@@ -29,7 +29,7 @@
           fill="#F0883E">CLAUDE CODE PLUGIN</text>
 
     <text x="90" y="322" font-size="118" font-weight="700" fill="#F0F6FC"
-          letter-spacing="-2">SpecSmith</text>
+          letter-spacing="-2">Brownspec</text>
 
     <text x="90" y="394" font-size="43" fill="#C9D1D9">Spec-driven development for</text>
     <text x="90" y="446" font-size="43" fill="#C9D1D9">codebases that already exist</text>
@@ -40,5 +40,5 @@
   </g>
 
   <text x="90" y="586" font-family="Menlo, monospace" font-size="22"
-        fill="#6E7681">github.com/yknnv/specsmith</text>
+        fill="#6E7681">github.com/yknnv/brownspec</text>
 </svg>

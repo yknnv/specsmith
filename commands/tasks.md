@@ -3,10 +3,10 @@ description: Break an approved design into an ordered task list that stays deplo
 argument-hint: [feature slug]
 ---
 
-Use the `tasks` skill from the SpecSmith plugin.
+Use the `tasks` skill from the Brownspec plugin.
 
 Feature: $ARGUMENTS — if empty, use the most recently modified directory under
-`.specsmith/features/`, and say which one you picked.
+`.brownspec/features/`, and say which one you picked.
 
 Write `trace.json` alongside `tasks.md`, with `files` empty. Report acceptance-criteria
 coverage explicitly, including gaps.

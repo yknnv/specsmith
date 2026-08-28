@@ -1,6 +1,6 @@
 ---
 name: repo-reading
-description: How SpecSmith reads an existing codebase — the project map, the conventions sample, and the blast radius. Use when another SpecSmith skill needs repository facts, or when the user asks what a change touches, who calls a symbol, or what this project's conventions are.
+description: How Brownspec reads an existing codebase — the project map, the conventions sample, and the blast radius. Use when another Brownspec skill needs repository facts, or when the user asks what a change touches, who calls a symbol, or what this project's conventions are.
 ---
 
 # Reading an existing repository
@@ -8,10 +8,10 @@ description: How SpecSmith reads an existing codebase — the project map, the c
 Three levels, run **lazily and in order**. Each is more expensive than the last, so no
 level runs until something actually needs it. Most of a spec never needs level 3.
 
-Everything SpecSmith writes lives under `.specsmith/` in the target repository:
+Everything Brownspec writes lives under `.brownspec/` in the target repository:
 
 ```
-.specsmith/
+.brownspec/
 ├── conventions.md          generated, safe to overwrite
 ├── policies.md             written by people, never overwritten
 ├── project-map.json        cache
@@ -22,7 +22,7 @@ Everything SpecSmith writes lives under `.specsmith/` in the target repository:
 
 ## Level 1 — Project map
 
-**Cost:** cheap. **Cached:** `.specsmith/project-map.json`.
+**Cost:** cheap. **Cached:** `.brownspec/project-map.json`.
 
 Establish the shape of the repository, nothing more:
 
@@ -56,7 +56,7 @@ Write it as JSON so later runs can read it without re-deriving anything:
 
 ## Level 2 — Conventions by sample
 
-**Cost:** moderate. **Cached:** `.specsmith/conventions.md`.
+**Cost:** moderate. **Cached:** `.brownspec/conventions.md`.
 
 Do not summarize the whole codebase, and do not describe an ideal. Pick **two or three
 modules closest to the work at hand** and extract what they actually do:

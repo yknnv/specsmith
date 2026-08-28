@@ -1,15 +1,15 @@
 ---
 name: design
-description: Turn an approved spec.md into design.md — the technical approach, the blast radius of the change, contract changes, failure handling, and migration path. Use after /specsmith:spec, or when the user asks how to build something already specified, or says /specsmith:design.
+description: Turn an approved spec.md into design.md — the technical approach, the blast radius of the change, contract changes, failure handling, and migration path. Use after /brownspec:spec, or when the user asks how to build something already specified, or says /brownspec:design.
 ---
 
 # Design the change
 
-Input is `.specsmith/features/<slug>/spec.md`. Output is `design.md` beside it. If the
-spec is missing or its exit checklist does not pass, say so and run `/specsmith:spec`
+Input is `.brownspec/features/<slug>/spec.md`. Output is `design.md` beside it. If the
+spec is missing or its exit checklist does not pass, say so and run `/brownspec:spec`
 instead — designing against an unfinished spec produces a document nobody trusts.
 
-Read `.specsmith/conventions.md` first. A design that departs from how this codebase is
+Read `.brownspec/conventions.md` first. A design that departs from how this codebase is
 written needs a written reason, not silence.
 
 ## Phase 1 — Blast radius
@@ -85,4 +85,4 @@ to the person who decides.
 - [ ] Every policy the spec touched is either answered here or listed as still open
 - [ ] Departures from `conventions.md` are written down with justification
 
-Then hand off to `/specsmith:tasks`. Do not write implementation code here.
+Then hand off to `/brownspec:tasks`. Do not write implementation code here.

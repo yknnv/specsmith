@@ -3,7 +3,7 @@ description: Interview and write a spec for a change to this codebase, then list
 argument-hint: <what you want to change>
 ---
 
-Use the `spec` skill from the SpecSmith plugin for this change:
+Use the `spec` skill from the Brownspec plugin for this change:
 
 $ARGUMENTS
 

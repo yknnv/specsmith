@@ -1,6 +1,6 @@
 # Policies
 
-**Written by people. `/specsmith:init` never overwrites this file.**
+**Written by people. `/brownspec:init` never overwrites this file.**
 
 Conventions describe how this codebase is written. Policies describe what the
 organization requires of it — security, data handling, operations. They are not
@@ -13,7 +13,7 @@ Last reviewed: <date>
 
 ## Enabled profiles
 
-Regulatory profiles shipped with SpecSmith. Nothing is enabled by default. Enable a
+Regulatory profiles shipped with Brownspec. Nothing is enabled by default. Enable a
 profile by listing it here; its rules are then applied to every spec in this repository.
 
 ```yaml
@@ -21,7 +21,7 @@ profiles:
   # - ru/152-fz-pdn        # personal data (152-ФЗ)
 ```
 
-Available: see `policies/` in the SpecSmith repository. Only public regulations ship
+Available: see `policies/` in the Brownspec repository. Only public regulations ship
 with the plugin.
 
 ---
@@ -47,7 +47,7 @@ author can act on.
 
 ## How these are applied
 
-SpecSmith matches triggers against a finished spec and lists the policies it touches. It
+Brownspec matches triggers against a finished spec and lists the policies it touches. It
 **routes to a reviewer — it does not certify compliance.** A spec that names every
 policy it touches has not been approved by anyone; it is ready to be shown to the people
 who approve things.

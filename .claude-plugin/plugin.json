@@ -1,13 +1,13 @@
 {
-  "name": "specsmith",
+  "name": "brownspec",
   "version": "0.1.0",
   "description": "Spec-driven development for existing codebases. Reads your repo's conventions, interviews you about a change, and writes spec, design and tasks to disk, with blast-radius analysis. Regulatory policy profiles are optional and off by default.",
   "author": {
     "name": "Yury Kononov",
     "url": "https://ykononov.com"
   },
-  "homepage": "https://github.com/yknnv/specsmith",
-  "repository": "https://github.com/yknnv/specsmith",
+  "homepage": "https://github.com/yknnv/brownspec",
+  "repository": "https://github.com/yknnv/brownspec",
   "license": "MIT",
   "keywords": [
     "spec-driven-development",

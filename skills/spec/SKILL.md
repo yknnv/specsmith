@@ -1,6 +1,6 @@
 ---
 name: spec
-description: Start or resume a specification for a change to this codebase. Interviews the user one question at a time, writes spec.md to disk, then separately lists the organizational policies the change touches. Use when the user asks to spec out a change, write requirements, plan a feature before coding, or says /specsmith:spec.
+description: Start or resume a specification for a change to this codebase. Interviews the user one question at a time, writes spec.md to disk, then separately lists the organizational policies the change touches. Use when the user asks to spec out a change, write requirements, plan a feature before coding, or says /brownspec:spec.
 ---
 
 # Write a specification for a change
@@ -11,12 +11,12 @@ repository — go read it before you ask the user anything.
 
 ## Phase 0 — Locate state
 
-1. Read `.specsmith/conventions.md` and `.specsmith/project-map.json`. If either is
-   missing, say once that `/specsmith:init` will produce them, then continue without.
+1. Read `.brownspec/conventions.md` and `.brownspec/project-map.json`. If either is
+   missing, say once that `/brownspec:init` will produce them, then continue without.
    Rebuild the project map if the dependency manifest has changed since it was cached.
-2. Read `.specsmith/policies.md` if present. **Do not apply it yet** — phase 3.
+2. Read `.brownspec/policies.md` if present. **Do not apply it yet** — phase 3.
 3. Derive the slug (kebab-case, from the user's description). Working directory is
-   `.specsmith/features/<slug>/`.
+   `.brownspec/features/<slug>/`.
 4. If `spec.md` already exists there, **you are resuming.** Read it, find every
    `<!-- OPEN: ... -->` marker, and continue from the first one. Do not re-ask anything
    the file already answers.
@@ -28,11 +28,11 @@ Run **levels 1 and 2** of the `repo-reading` skill. Establish:
 - Which modules the change plausibly touches, and what they currently do
 - The public contracts of those modules — HTTP/RPC, events, tables, config, CLI
 - How similar changes were done before: `git log` on the touched paths, and any adjacent
-  specs under `.specsmith/features/`
+  specs under `.brownspec/features/`
 - Existing tests covering the affected behavior
 
 **Do not run level 3 here.** Full blast radius is expensive and belongs in
-`/specsmith:design`, once the change actually has a shape. What you need now is a
+`/brownspec:design`, once the change actually has a shape. What you need now is a
 hypothesis about where it lands, not a complete dependency graph.
 
 Then fill `${CLAUDE_PLUGIN_ROOT}/templates/spec.md.tmpl` with what you found and what
@@ -72,7 +72,7 @@ Priority, highest first:
 you apply policies while writing, you will shape the spec to satisfy them instead of
 revealing where they bite.
 
-Load the rules: every profile listed under `profiles:` in `.specsmith/policies.md`, read
+Load the rules: every profile listed under `profiles:` in `.brownspec/policies.md`, read
 from `${CLAUDE_PLUGIN_ROOT}/policies/<profile>.md`, plus the local rules in that file. If
 nothing is enabled, write "No policies enabled" in the section and move on.
 
@@ -116,7 +116,7 @@ while any fails.
 - [ ] Policy routing has run, and its output is a routing list — not a verdict
 - [ ] Conflicts with `conventions.md` are written down with the reason for departing
 
-Then say the spec is ready and that `/specsmith:design` is next. Do not design or write
+Then say the spec is ready and that `/brownspec:design` is next. Do not design or write
 code in this skill.
 
 ## What does not belong in a spec

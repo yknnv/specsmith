@@ -1,6 +1,6 @@
 # 152-ФЗ · Персональные данные
 
-**Профиль SpecSmith.** Подключается явно в `.specsmith/policies.md`:
+**Профиль Brownspec.** Подключается явно в `.brownspec/policies.md`:
 
 ```yaml
 profiles:

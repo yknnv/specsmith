@@ -12,7 +12,7 @@ protocol you can only pass is not a measurement.
 - **Changes:** four, chosen from work that was going to happen anyway. **Not invented for
   the experiment** — invented tasks have no consumers to break, which is precisely the
   variable under test.
-- **Split:** two through the full SpecSmith cycle (`init` → `spec` → `design` → `tasks` →
+- **Split:** two through the full Brownspec cycle (`init` → `spec` → `design` → `tasks` →
   implementation), two through an ordinary prompt to the same agent.
 - **Pairing:** the four changes should be comparable in size. Note it when they are not.
 - **Blast radius:** text-search only in this phase. **Do not enable a code graph** — the
@@ -36,8 +36,8 @@ One row per change. Fill it in as the work happens, not from memory afterwards.
 
 | # | Change | Track | Iterations | Breakage | Hours | Tokens |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | | specsmith | | | | |
-| 2 | | specsmith | | | | |
+| 1 | | brownspec | | | | |
+| 2 | | brownspec | | | | |
 | 3 | | prompt | | | | |
 | 4 | | prompt | | | | |
 

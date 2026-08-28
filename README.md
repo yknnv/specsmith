@@ -1,4 +1,4 @@
-# SpecSmith — spec-driven development for existing codebases
+# Brownspec — spec-driven development for existing codebases
 
 **A Claude Code plugin.** You already write specs. Your tooling assumes the code does not
 exist yet.
@@ -9,13 +9,13 @@ repository: describe what you want, get a spec, generate code. Then you open the
 repository, and there are sixty services, consumers you did not write, and a change that
 has to ship without breaking any of them.
 
-SpecSmith specifies **a change to a running system.** The same three artifacts. What
+Brownspec specifies **a change to a running system.** The same three artifacts. What
 happens around them is different: conventions are read out of your code instead of
 declared, the design carries the blast radius of the change, and your organization's
 rules live in a file the tool is forbidden to overwrite.
 
 The premise is small: a spec takes five minutes to fix. Code the agent has already
-written does not.
+written does not. The name is the whole thesis — brownfield, not greenfield.
 
 **Regulatory profiles are optional.** Everything above works with none enabled — the
 152-ФЗ profile is there for teams that need it, and invisible to everyone else.
@@ -26,33 +26,33 @@ written does not.
 | --- | --- | --- | --- | --- |
 | GitHub Spec Kit | yes | no | no | no |
 | Kiro spec mode | partly | no | no | no |
-| SpecSmith | no | yes | yes, with provenance | yes, opt-in |
+| Brownspec | no | yes | yes, with provenance | yes, opt-in |
 
-If you are starting a new project, use one of the others — SpecSmith's entire first phase
+If you are starting a new project, use one of the others — Brownspec's entire first phase
 is reading code that does not exist yet. It earns its place when the code is already
 there, has consumers, and cannot break.
 
 ## Install
 
 ```
-/plugin marketplace add yknnv/specsmith
-/plugin install specsmith@specsmith
+/plugin marketplace add yknnv/brownspec
+/plugin install brownspec@brownspec
 ```
 
 ## Use
 
 ```
-/specsmith:init                  # once per repo — infers conventions, stubs policies
-/specsmith:spec "<change>"       # interview → spec.md + policies touched
-/specsmith:design                # blast radius, contracts, rollback → design.md
-/specsmith:tasks                 # ordered, deployable at every step → tasks.md
+/brownspec:init                  # once per repo — infers conventions, stubs policies
+/brownspec:spec "<change>"       # interview → spec.md + policies touched
+/brownspec:design                # blast radius, contracts, rollback → design.md
+/brownspec:tasks                 # ordered, deployable at every step → tasks.md
 ```
 
-After `init`, edit `.specsmith/policies.md` by hand, enable any profiles you need, and
+After `init`, edit `.brownspec/policies.md` by hand, enable any profiles you need, and
 commit it. That file is the part a tool cannot write for you.
 
 Each phase writes to disk after every answer, so an interview survives an interrupted
-session. Run `/specsmith:spec` again on the same change and it resumes from the first
+session. Run `/brownspec:spec` again on the same change and it resumes from the first
 unanswered question.
 
 ## Making it the default
@@ -65,8 +65,8 @@ rather than something you remember, say so in your `CLAUDE.md`:
 ## Specs
 
 A change that touches a public contract, a database schema, or more than one module
-goes through SpecSmith before any code: `/specsmith:spec` → `/specsmith:design` →
-`/specsmith:tasks`, then implement from `tasks.md`.
+goes through Brownspec before any code: `/brownspec:spec` → `/brownspec:design` →
+`/brownspec:tasks`, then implement from `tasks.md`.
 
 Below that bar — a bug fix, a copy change, a refactor inside one module — write the
 code.
@@ -77,7 +77,7 @@ spec is needed and name the command.
 
 Three things decide whether a rule like this holds.
 
-**Give it a threshold.** "Everything goes through SpecSmith" fires on typo fixes,
+**Give it a threshold.** "Everything goes through Brownspec" fires on typo fixes,
 somebody gets interviewed about a one-line change, and the rule is dead inside a week. A
 rule people switch off is worse than no rule, because it leaves behind the belief that a
 process exists.
@@ -90,7 +90,7 @@ in the chat as an alternative to it.
 
 **Name the situation, not the principle.** The rule is background context and the live
 instruction usually outweighs it. "If the request is just do it" holds better than
-"changes go through SpecSmith", because it tells the agent what it is looking at when the
+"changes go through Brownspec", because it tells the agent what it is looking at when the
 moment arrives.
 
 If prose is not enough, a `PreToolUse` hook on edits is the deterministic version — at
@@ -98,7 +98,7 @@ the cost of firing on the small changes too.
 
 ## What the extra phases buy you
 
-**Conventions are inferred, so the interview gets shorter.** `/specsmith:init` samples the
+**Conventions are inferred, so the interview gets shorter.** `/brownspec:init` samples the
 modules closest to your work and writes down how errors are actually handled here, how
 logging is actually done, where the layers actually sit — including where the codebase
 contradicts itself. The interview then asks only what the repository cannot answer. Six
@@ -114,17 +114,17 @@ seven rules on personal data under Russian law, each as a trigger the spec phase
 match, a requirement, and the facts a spec must therefore state.
 
 **Nothing is enabled by default.** A profile applies only once you list it under
-`profiles:` in your own `policies.md`. If you never do, SpecSmith behaves as though the
+`profiles:` in your own `policies.md`. If you never do, Brownspec behaves as though the
 profile did not exist — no prompts about it, no sections in the spec, no mention in the
 output. Only public regulations ship here.
 
-SpecSmith **routes, it does not certify.** The output is "this change touches PDN-03,
+Brownspec **routes, it does not certify.** The output is "this change touches PDN-03,
 show it to security" — never "complies with 152-ФЗ". A false sense of coverage is worse
 than no check at all, because it stops someone from looking.
 
 ## Blast radius, and how much to trust it
 
-`/specsmith:design` establishes what depends on the code you are changing: callers,
+`/brownspec:design` establishes what depends on the code you are changing: callers,
 importers, contract consumers across process boundaries, data, covering tests. It runs
 against the points the spec identified — not the whole repository.
 
@@ -145,7 +145,7 @@ answer; it does not give you certainty, and the design says which one you are ho
 ## Layout
 
 ```
-.specsmith/
+.brownspec/
 ├── conventions.md              generated — how this codebase is actually written
 ├── policies.md                 yours — never overwritten
 ├── project-map.json            cache
@@ -159,7 +159,7 @@ answer; it does not give you certainty, and the design says which one you are ho
 ## What the artifacts are for
 
 A spec that restates the code is dead weight — it rots in a sprint and takes the team's
-trust with it. SpecSmith writes down what the code cannot tell you:
+trust with it. Brownspec writes down what the code cannot tell you:
 
 - **Non-goals** — the adjacent things this change deliberately does not do
 - **Failure behavior** — what happens when each dependency is slow, down, or wrong
@@ -191,9 +191,9 @@ already running. There is no service, no telemetry, and no network call of its o
 
 ## Русское описание
 
-**SpecSmith — плагин для Claude Code, который заставляет агента сначала договориться,
-а потом писать код.** Рассчитан на brownfield: не на новый проект с нуля, а на изменение
-в системе, у которой уже есть работающее поведение, контракты и потребители.
+**Brownspec — плагин для Claude Code, который заставляет агента сначала договориться,
+а потом писать код.** Имя от brownfield: не новый проект с нуля, а изменение в системе,
+у которой уже есть работающее поведение, контракты и потребители.
 
 Отличий от Spec Kit, Kiro и Tessl три:
 
@@ -218,7 +218,7 @@ PDN-03, покажите ИБ», и никогда «соответствует 
 Автор — Юрий Кононов: [ykononov.com](https://ykononov.com),
 [LinkedIn](https://www.linkedin.com/in/ykononov/), телеграм [@ykononov](https://t.me/ykononov).
 Если правило профиля 152-ФЗ сформулировано неточно или его не хватает — заводите
-[issue](https://github.com/yknnv/specsmith/issues), профили от этого только выигрывают.
+[issue](https://github.com/yknnv/brownspec/issues), профили от этого только выигрывают.
 
 ## Status
 
@@ -226,7 +226,7 @@ v0.1 — `init` through `tasks`, with the 152-ФЗ profile and text-search blast
 
 Next, in order: measurements on real changes ([docs/measurement.md](docs/measurement.md)),
 optional code-graph support, then more regulatory profiles — **European regulation (GDPR)
-is the next profile after the Russian set** — and finally `/specsmith:drift`, comparing a
+is the next profile after the Russian set** — and finally `/brownspec:drift`, comparing a
 spec against what the code actually does now, using `trace.json`.
 
 ## Author
@@ -236,7 +236,7 @@ Yury Kononov — [ykononov.com](https://ykononov.com) ·
 
 Questions about a phase that behaved oddly in your repository, or a rule that should be
 in a policy profile, are best filed as an
-[issue](https://github.com/yknnv/specsmith/issues) — that is how the profiles get better.
+[issue](https://github.com/yknnv/brownspec/issues) — that is how the profiles get better.
 
 ## License
 

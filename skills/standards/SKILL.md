@@ -1,21 +1,21 @@
 ---
 name: standards
-description: Bootstrap or refresh .specsmith/ for this repository — project-map.json and conventions.md derived from the code, plus a policies.md stub for humans to fill in. Use on first run in a new repo, when conventions have drifted, or when the user says /specsmith:init.
+description: Bootstrap or refresh .brownspec/ for this repository — project-map.json and conventions.md derived from the code, plus a policies.md stub for humans to fill in. Use on first run in a new repo, when conventions have drifted, or when the user says /brownspec:init.
 ---
 
-# Bootstrap `.specsmith/`
+# Bootstrap `.brownspec/`
 
 First run in a repository. Produces three things:
 
 | File | Who writes it | On re-run |
 | --- | --- | --- |
-| `.specsmith/project-map.json` | generated | overwritten |
-| `.specsmith/conventions.md` | generated, user corrects | **overwritten** |
-| `.specsmith/policies.md` | people — security, architecture | **never touched** |
+| `.brownspec/project-map.json` | generated | overwritten |
+| `.brownspec/conventions.md` | generated, user corrects | **overwritten** |
+| `.brownspec/policies.md` | people — security, architecture | **never touched** |
 
 ## The one rule that cannot be broken
 
-**If `.specsmith/policies.md` exists, do not write to it. Do not reformat it, do not
+**If `.brownspec/policies.md` exists, do not write to it. Do not reformat it, do not
 merge into it, do not append a section, do not "helpfully" fill in a blank.** Create it
 only when it is absent, and only from
 `${CLAUDE_PLUGIN_ROOT}/templates/policies.md.tmpl` — an unmodified stub.
@@ -28,14 +28,14 @@ Before writing anything, check whether it exists. If it does, say so and leave i
 
 ## Phase 1 — Map
 
-Run **level 1** from the `repo-reading` skill. Write `.specsmith/project-map.json`.
+Run **level 1** from the `repo-reading` skill. Write `.brownspec/project-map.json`.
 
 ## Phase 2 — Conventions
 
 Run **level 2** from the `repo-reading` skill. Sample two or three modules — prefer the
 ones with the most recent activity in `git log`, since stale modules teach stale
 conventions. Fill in `${CLAUDE_PLUGIN_ROOT}/templates/conventions.md.tmpl` and write
-`.specsmith/conventions.md`.
+`.brownspec/conventions.md`.
 
 Sources, in order of trust: the code itself where it is consistent, then linter and
 formatter configuration, CI pipeline definitions, `CONTRIBUTING.md`, ADRs, PR templates,
@@ -59,7 +59,7 @@ Rewrite `conventions.md` after each answer.
 
 ## Phase 4 — Hand off the part you cannot do
 
-Create `.specsmith/policies.md` from the stub **only if it does not already exist**.
+Create `.brownspec/policies.md` from the stub **only if it does not already exist**.
 Then tell the user plainly:
 
 - Policies are not inferred from code, because the code may be what violates them

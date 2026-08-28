@@ -1,8 +1,8 @@
 ---
-description: Read this repository and bootstrap .specsmith/ — conventions.md from the code, plus a policies.md stub for humans.
+description: Read this repository and bootstrap .brownspec/ — conventions.md from the code, plus a policies.md stub for humans.
 ---
 
-Use the `standards` skill from the SpecSmith plugin to bootstrap `.specsmith/` in this
+Use the `standards` skill from the Brownspec plugin to bootstrap `.brownspec/` in this
 repository.
 
 Generate `project-map.json` and `conventions.md` from the code. Create `policies.md`

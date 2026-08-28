@@ -1,11 +1,11 @@
 ---
 name: tasks
-description: Break an approved design.md into an ordered, reviewable task list, and seed trace.json so drift can be detected later. Use after /specsmith:design, when the user asks to break work into tasks or tickets, or says /specsmith:tasks.
+description: Break an approved design.md into an ordered, reviewable task list, and seed trace.json so drift can be detected later. Use after /brownspec:design, when the user asks to break work into tasks or tickets, or says /brownspec:tasks.
 ---
 
 # Break the design into tasks
 
-Input is `spec.md` and `design.md` under `.specsmith/features/<slug>/`. Output is
+Input is `spec.md` and `design.md` under `.brownspec/features/<slug>/`. Output is
 `tasks.md` from `${CLAUDE_PLUGIN_ROOT}/templates/tasks.md.tmpl`, plus `trace.json`.
 
 If the design's exit checklist does not pass, stop and say so. A task list built on an
@@ -47,7 +47,7 @@ emitted, some task emits it.
 
 Write it alongside `tasks.md`, with `files` empty. It is filled in as work happens — the
 agent implementing a task records what it actually touched. That record is what
-`/specsmith:drift` will later compare against the spec.
+`/brownspec:drift` will later compare against the spec.
 
 ```json
 {

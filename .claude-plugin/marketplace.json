@@ -1,12 +1,12 @@
 {
-  "name": "specsmith",
+  "name": "brownspec",
   "owner": {
     "name": "Yury Kononov",
     "url": "https://ykononov.com"
   },
   "plugins": [
     {
-      "name": "specsmith",
+      "name": "brownspec",
       "source": "./",
       "description": "Spec-driven development for existing codebases. Reads your repo's conventions, interviews you about a change, and writes spec, design and tasks to disk, with blast-radius analysis. Regulatory policy profiles are optional and off by default."
     }
