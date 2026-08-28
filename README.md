@@ -55,6 +55,47 @@ Each phase writes to disk after every answer, so an interview survives an interr
 session. Run `/specsmith:spec` again on the same change and it resumes from the first
 unanswered question.
 
+## Making it the default
+
+The skills fire when you ask for a spec. They do not fire when you say "implement this" —
+and that is how most work actually arrives. If you want spec-first to be the default
+rather than something you remember, say so in your `CLAUDE.md`:
+
+```markdown
+## Specs
+
+A change that touches a public contract, a database schema, or more than one module
+goes through SpecSmith before any code: `/specsmith:spec` → `/specsmith:design` →
+`/specsmith:tasks`, then implement from `tasks.md`.
+
+Below that bar — a bug fix, a copy change, a refactor inside one module — write the
+code.
+
+If the request is "just do it" and the change is above the bar, do not start. Say a
+spec is needed and name the command.
+```
+
+Three things decide whether a rule like this holds.
+
+**Give it a threshold.** "Everything goes through SpecSmith" fires on typo fixes,
+somebody gets interviewed about a one-line change, and the rule is dead inside a week. A
+rule people switch off is worse than no rule, because it leaves behind the belief that a
+process exists.
+
+**Do not leave a cheaper path in the same file.** If `CLAUDE.md` also says something like
+"confirm the behavior with the user before coding", then an agent that pastes a table of
+examples into the chat has satisfied that rule and skipped the spec — legitimately, by
+the file's own terms. Whatever you want confirmed belongs in `spec.md` as a section, not
+in the chat as an alternative to it.
+
+**Name the situation, not the principle.** The rule is background context and the live
+instruction usually outweighs it. "If the request is just do it" holds better than
+"changes go through SpecSmith", because it tells the agent what it is looking at when the
+moment arrives.
+
+If prose is not enough, a `PreToolUse` hook on edits is the deterministic version — at
+the cost of firing on the small changes too.
+
 ## What the extra phases buy you
 
 **Conventions are inferred, so the interview gets shorter.** `/specsmith:init` samples the
@@ -165,6 +206,10 @@ already running. There is no service, no telemetry, and no network call of its o
   семь правил в формате «триггер → требование → что должно быть в спеке». Подключается
   явно, по умолчанию не включено ничего: не впишете профиль в свой `policies.md` — плагин
   ведёт себя так, будто его нет
+
+Чтобы работа шла через плагин по умолчанию, а не когда вспомнишь, в `CLAUDE.md`
+проекта прописывается правило с порогом — как именно и на какие грабли там наступают,
+см. [Making it the default](#making-it-the-default).
 
 Инструмент **маршрутизирует, а не выносит вердикт**: на выходе «это изменение затрагивает
 PDN-03, покажите ИБ», и никогда «соответствует 152-ФЗ». Ложное чувство защищённости
